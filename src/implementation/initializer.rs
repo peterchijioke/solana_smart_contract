@@ -27,6 +27,7 @@ impl Processor {
             owner: *asset_account.key,
             metadata,
         };
+
         asset.serialize(&mut &mut asset_account.data.borrow_mut()[..])?;
         Ok(())
     }
