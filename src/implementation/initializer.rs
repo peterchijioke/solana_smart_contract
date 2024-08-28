@@ -91,14 +91,11 @@ impl Processor {
     ) -> ProgramResult {
         let accounts_iter = &mut accounts.iter();
         let asset_account = next_account_info(accounts_iter)?;
-
         let mut asset = Asset::try_from_slice(&asset_account.data.borrow())?;
-
         if asset.owner != *asset_account.key {
             msg!("Account does not own this asset");
             return Err(ProgramError::InvalidAccountData);
         }
-
         asset.owner = new_owner;
         asset.serialize(&mut &mut asset_account.data.borrow_mut()[..])?;
         Ok(())
