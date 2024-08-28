@@ -58,7 +58,6 @@ impl Processor {
         let buyer_account = next_account_info(accounts_iter)?;
         let system_program_account = next_account_info(accounts_iter)?;
 
-        // Load the asset data from the account
         let mut asset = Asset::try_from_slice(&asset_account.data.borrow())?;
 
         // Verify that the seller is the owner of the asset
